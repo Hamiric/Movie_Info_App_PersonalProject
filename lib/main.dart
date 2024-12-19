@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:movie_info_app_personalproject/presentation/app/route.dart';
 import 'package:movie_info_app_personalproject/presentation/theme/theme.dart';
 
 void main() {
@@ -16,12 +17,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
       themeMode: ThemeMode.dark,
       theme: lightTheme,
       darkTheme: darkTheme,
-      // home: 
+      
+      routerConfig: router,
     );
   }
 }
