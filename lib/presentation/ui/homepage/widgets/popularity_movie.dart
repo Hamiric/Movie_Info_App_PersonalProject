@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class PopularityMovie extends StatelessWidget {
   const PopularityMovie({super.key});
@@ -14,12 +15,17 @@ class PopularityMovie extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 24),
-                child: Container(
-                  height: 180,
-                  width: 120,
-                  decoration: BoxDecoration(
-                    color: Colors.blue[200],
-                    borderRadius: BorderRadius.circular(8),
+                child: GestureDetector(
+                  onTap: (){
+                    context.go('/post/');
+                  },
+                  child: Container(
+                    height: 180,
+                    width: 120,
+                    decoration: BoxDecoration(
+                      color: Colors.blue[200],
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
                 ),
               ),

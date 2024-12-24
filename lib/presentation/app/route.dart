@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:movie_info_app_personalproject/presentation/ui/detailpage/detailpage.dart';
 import 'package:movie_info_app_personalproject/presentation/ui/homepage/homepage.dart';
 
 final router = GoRouter(
@@ -6,10 +7,14 @@ final router = GoRouter(
     GoRoute(
       path: '/',
       builder: (context, state) => const Homepage(),
-      // routes: [],
+      routes: [
+        GoRoute(
+          path: 'post',
+          builder: (context, state) => const Detailpage(),
+        )
+      ],
     ),
   ],
-
   initialLocation: '/',
 
   /*
