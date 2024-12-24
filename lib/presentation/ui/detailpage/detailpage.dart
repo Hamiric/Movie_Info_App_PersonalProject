@@ -8,7 +8,9 @@ import 'package:movie_info_app_personalproject/presentation/ui/detailpage/widget
 import 'package:movie_info_app_personalproject/presentation/ui/detailpage/widgets/movie_tagline_runningtime.dart';
 
 class Detailpage extends StatelessWidget {
-  const Detailpage({super.key});
+  const Detailpage({super.key, this.tag});
+
+  final tag;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class Detailpage extends StatelessWidget {
       body: SafeArea(
           child: ListView(
         children: [
-          MoviePoster(),
+          MoviePoster(tag: tag,),
           SizedBox(height: 16),
           MovieNameOpentime(movieName: 'Moana 2', openTime: DateTime.now()),
           SizedBox(height: 8),
