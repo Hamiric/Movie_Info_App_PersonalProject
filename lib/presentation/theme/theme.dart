@@ -18,7 +18,6 @@ class DarkTheme extends AppThemeExtension {
   });
 }
 
-
 final lightTheme = _theme(Brightness.light, const LightTheme());
 final darkTheme = _theme(Brightness.dark, const DarkTheme());
 

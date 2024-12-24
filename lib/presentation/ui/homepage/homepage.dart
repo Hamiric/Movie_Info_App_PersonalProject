@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movie_info_app_personalproject/presentation/ui/homepage/widgets/current_movie.dart';
+import 'package:movie_info_app_personalproject/presentation/ui/homepage/widgets/highest_rate_movie.dart';
+import 'package:movie_info_app_personalproject/presentation/ui/homepage/widgets/popularity_movie.dart';
+import 'package:movie_info_app_personalproject/presentation/ui/homepage/widgets/upcomming_move.dart';
 import 'package:movie_info_app_personalproject/presentation/widgets/reponsiveview.dart';
 
 class Homepage extends StatelessWidget {
@@ -9,19 +13,41 @@ class Homepage extends StatelessWidget {
     return ReponsiveView(
       mobile: Scaffold(
         body: SafeArea(
-          child: ListView(
-            scrollDirection: Axis.vertical,
-            children: [
-              Text('가장 인기있는'),
-              // 가장 인기있는 - text
-              // 영화 포스터 - Image
-              // 현재 상영중 - text
-              // 스크롤(가로) 가능한 영화 포스터들 - Row
-              // 인기순 - text
-              // 스크롤(가로) 가능한 영화 포스터들 - Row(Stack)
-              // 평좀 높은순 - text
-              // 스크롤(가로) 가능한 영화 포스터들 - Row
-            ],
+          child: Padding(
+            padding: const EdgeInsets.only(top: 24, bottom: 24, left: 24),
+            child: ListView(
+              scrollDirection: Axis.vertical,
+              children: [
+                Text('가장 인기있는', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                SizedBox(height: 16,),
+                Padding(
+                  padding: const EdgeInsets.only(right: 24),
+                  child: Container(
+                    height: 540,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16,),
+                Text('현재 상영중', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                SizedBox(height: 8,),
+                CurrentMovie(),
+                SizedBox(height: 16,),
+                Text('인기순', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                SizedBox(height: 8,),
+                PopularityMovie(),
+                SizedBox(height: 16,),
+                Text('평점 높은 순', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                SizedBox(height: 8,),
+                HighestRateMovie(),
+                SizedBox(height: 16,),
+                Text('개봉 예정', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                SizedBox(height: 8,),
+                UpcommingMove()
+              ],
+            ),
           ),
         ),
       ),
