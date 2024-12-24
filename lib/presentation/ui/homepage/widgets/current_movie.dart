@@ -9,22 +9,27 @@ class CurrentMovie extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: List.generate(20, (index) => Padding(
-          padding: const EdgeInsets.only(right: 8),
-          child: GestureDetector(
-            onTap: (){
-              context.go('/post/');
-            },
-            child: Container(
-              height: 180,
-              width: 120,
-              decoration: BoxDecoration(
-                color: Colors.amber,
-                borderRadius: BorderRadius.circular(8)
+        children: List.generate(20, (index) {
+          String tag = 'current_$index';
+          return Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: GestureDetector(
+              onTap: () {
+                context.go('/post/', extra: tag);
+              },
+              child: Hero(
+                tag: tag,
+                child: Container(
+                  height: 180,
+                  width: 120,
+                  decoration: BoxDecoration(
+                      color: Colors.amber,
+                      borderRadius: BorderRadius.circular(8)),
+                ),
               ),
             ),
-          ),
-        )),
+          );
+        }),
       ),
     );
   }
