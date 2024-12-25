@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:movie_info_app_personalproject/data/sources/env.dart';
 import 'package:movie_info_app_personalproject/presentation/app/route.dart';
 import 'package:movie_info_app_personalproject/presentation/theme/theme.dart';
 
-Future<void> main() async {
-  final env = Env();
-  await env.loadEnv();
-
+void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
 

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:movie_info_app_personalproject/data/models/movie_response_dto.dart';
+import 'package:movie_info_app_personalproject/data/models/movie_now_upcomming_dto.dart';
 
 void main() {
   test('movie_response_dto test', () {
@@ -39,7 +39,7 @@ void main() {
 }
 """;
 
-    final movie = MovieResposeDto.fromJson(jsonDecode(testJson));
+    final movie = MovieNowUpcommingDto.fromJson(jsonDecode(testJson));
 
     expect(movie.page, 1);
     expect(movie.results[0].genreIds[0], 28);
