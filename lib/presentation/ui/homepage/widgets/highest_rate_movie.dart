@@ -21,7 +21,14 @@ class HighestRateMovie extends StatelessWidget {
             padding: const EdgeInsets.only(right: 8),
             child: GestureDetector(
               onTap: () {
-                context.go('/post/', extra: tag);
+                if (movie != null) {
+                  Map<String, dynamic> extra = {
+                    "tag": tag,
+                    "id": movie[index].id,
+                    "poster": movie[index].posterPath,
+                  };
+                  context.go('/post/', extra: extra);
+                }
               },
               child: Hero(
                 tag: tag,

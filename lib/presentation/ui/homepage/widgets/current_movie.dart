@@ -21,7 +21,14 @@ class CurrentMovie extends StatelessWidget {
             padding: const EdgeInsets.only(right: 8),
             child: GestureDetector(
               onTap: () {
-                context.go('/post/', extra: tag);
+                if (movie != null) {
+                  Map<String, dynamic> extra = {
+                    "tag": tag,
+                    "id": movie[index].id,
+                    "poster": movie[index].posterPath,
+                  };
+                  context.go('/post/', extra: extra);
+                }
               },
               child: Hero(
                 tag: tag,
@@ -32,8 +39,8 @@ class CurrentMovie extends StatelessWidget {
                       image: movie == null
                           ? null
                           : DecorationImage(
-                              image:
-                                  NetworkImage(posterUrl(movie[index].posterPath)),
+                              image: NetworkImage(
+                                  posterUrl(movie[index].posterPath)),
                               fit: BoxFit.cover),
                       borderRadius: BorderRadius.circular(8)),
                   child: movie == null

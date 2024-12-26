@@ -20,7 +20,14 @@ class MostPopularMovie extends StatelessWidget {
         tag: tag,
         child: GestureDetector(
           onTap: () {
-            context.go('/post/', extra: tag);
+            if (movie != null) {
+              Map<String, dynamic> extra = {
+                "tag": tag,
+                "id": movie[0].id,
+                "poster": movie[0].posterPath,
+              };
+              context.go('/post/', extra: extra);
+            }
           },
           child: Container(
             height: 540,
@@ -28,7 +35,8 @@ class MostPopularMovie extends StatelessWidget {
               image: movie == null
                   ? null
                   : DecorationImage(
-                      image: NetworkImage(posterUrl(movie[0].posterPath)), fit: BoxFit.cover),
+                      image: NetworkImage(posterUrl(movie[0].posterPath)),
+                      fit: BoxFit.cover),
             ),
             child: movie == null
                 ? Center(child: CircularProgressIndicator())

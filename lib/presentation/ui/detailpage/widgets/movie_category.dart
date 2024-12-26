@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:movie_info_app_personalproject/domain/entities/movie_detail_entitiy.dart';
 
 class MovieCategory extends StatelessWidget {
-  const MovieCategory({super.key, this.category});
+  const MovieCategory({super.key, this.detailState});
 
-  final category;
+  final detailState;
 
   @override
   Widget build(BuildContext context) {
+    MovieDetail movie = detailState.movieDetail;
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -22,7 +25,7 @@ class MovieCategory extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(left: 24),
             child: Row(
-              children: List.generate(category.length, (index) => Padding(
+              children: List.generate(movie.genres.length, (index) { return Padding(
                 padding: const EdgeInsets.only(right: 4),
                 child: Container(
                   height: 40,
@@ -33,10 +36,10 @@ class MovieCategory extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Center(child: Text('${category[index]}', style: TextStyle(color: Colors.blue),)),
+                    child: Center(child: Text(movie.genres[index], style: TextStyle(color: Colors.blue),)),
                   ),
                 ),
-              )),
+              );}),
             ),
           ),
         ),

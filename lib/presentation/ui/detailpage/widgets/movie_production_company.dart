@@ -1,24 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:movie_info_app_personalproject/domain/entities/movie_detail_entitiy.dart';
+import 'package:movie_info_app_personalproject/presentation/widgets/poster_url.dart';
 
 class MovieProductionCompany extends StatelessWidget {
-  const MovieProductionCompany({super.key, this.companies});
+  const MovieProductionCompany({super.key, this.detailState});
 
-  final companies;
+  final detailState;
 
   @override
   Widget build(BuildContext context) {
+    MovieDetail movie = detailState.movieDetail;
+
     return Padding(
       padding: const EdgeInsets.only(left: 24),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          children: List.generate(companies.length, (index)=> Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: Container(
-              color: Colors.white,
-              child: Opacity(opacity: 0.9, child: Image.network(companies[index], fit: BoxFit.cover)),
-            ),
-          )),
+          children: List.generate(movie.productionCompanyLogos.length, (index) {
+            return movie.productionCompanyLogos[index] == 'null'
+                ? SizedBox.shrink()
+                : Padding(
+                    padding: const EdgeInsets.only(right: 16),
+                    child: Container(
+                      width: 180,
+                      height: 100,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Opacity(
+                            opacity: 0.9,
+                            child: Image.network(
+                                posterUrl(movie.productionCompanyLogos[index]),
+                                fit: BoxFit.fill)),
+                      ),
+                    ),
+                  );
+          }),
         ),
       ),
     );

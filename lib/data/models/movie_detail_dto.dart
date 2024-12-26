@@ -1,7 +1,7 @@
 class MovieDetailDto {
   bool adult;
   String backdropPath;
-  String? belongsToCollection;
+  BelongsToCollection? belongsToCollection;
   int budget;
   List<Genre> genres;
   String homepage;
@@ -15,7 +15,7 @@ class MovieDetailDto {
   String posterPath;
   List<ProductionCompany> productionCompanies;
   List<ProductionCountry> productionCountries;
-  DateTime releaseDate;
+  String releaseDate;
   int revenue;
   int runtime;
   List<SpokenLanguage> spokenLanguages;
@@ -58,7 +58,7 @@ class MovieDetailDto {
   MovieDetailDto copyWith({
     bool? adult,
     String? backdropPath,
-    String? belongsToCollection,
+    BelongsToCollection? belongsToCollection,
     int? budget,
     List<Genre>? genres,
     String? homepage,
@@ -72,7 +72,7 @@ class MovieDetailDto {
     String? posterPath,
     List<ProductionCompany>? productionCompanies,
     List<ProductionCountry>? productionCountries,
-    DateTime? releaseDate,
+    String? releaseDate,
     int? revenue,
     int? runtime,
     List<SpokenLanguage>? spokenLanguages,
@@ -116,7 +116,7 @@ class MovieDetailDto {
       : this(
           adult: json['adult'],
           backdropPath: json['backdrop_path'],
-          belongsToCollection: json['belongs_to_collection'],
+          belongsToCollection: json['belongs_to_collection'] == null ? null : BelongsToCollection.fromJson(json['belongs_to_collection']),
           budget: json['budget'],
           genres: List<Genre>.from(
               json['genres'].map((item) => Genre.fromJson(item))),
@@ -136,7 +136,7 @@ class MovieDetailDto {
           productionCountries: List<ProductionCountry>.from(
               json['production_countries']
                   .map((item) => ProductionCountry.fromJson(item))),
-          releaseDate: DateTime.parse(json['release_date']),
+          releaseDate: json['release_date'],
           revenue: json['revenue'],
           runtime: json['runtime'],
           spokenLanguages: List<SpokenLanguage>.from(json['spoken_languages']
@@ -148,6 +148,39 @@ class MovieDetailDto {
           voteAverage: json['vote_average'],
           voteCount: json['vote_count'],
         );
+}
+
+class BelongsToCollection {
+  int id;
+  String name;
+  String posterPath;
+  String backdropPath;
+
+  BelongsToCollection({
+    required this.id,
+    required this.name,
+    required this.posterPath,
+    required this.backdropPath,
+  });
+
+  BelongsToCollection copyWith({
+    int? id,
+    String? name,
+    String? posterPath,
+    String? backdropPath,
+  }) =>
+      BelongsToCollection(
+          id: id ?? this.id,
+          name: name ?? this.name,
+          posterPath: posterPath ?? this.posterPath,
+          backdropPath: backdropPath ?? this.backdropPath);
+  
+  BelongsToCollection.fromJson(Map<String,dynamic> json) : this(
+    id: json['id'],
+    name: json['name'],
+    posterPath: json['poster_path'],
+    backdropPath: json['backdrop_path'],
+  );
 }
 
 class Genre {

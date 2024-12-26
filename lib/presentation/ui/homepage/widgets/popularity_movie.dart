@@ -25,7 +25,14 @@ class PopularityMovie extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 24),
                   child: GestureDetector(
                     onTap: () {
-                      context.go('/post/', extra: tag);
+                      if (movie != null) {
+                        Map<String, dynamic> extra = {
+                          "tag": tag,
+                          "id": movie[index].id,
+                          "poster": movie[index].posterPath,
+                        };
+                        context.go('/post/', extra: extra);
+                      }
                     },
                     child: Hero(
                       tag: tag,
@@ -36,8 +43,8 @@ class PopularityMovie extends StatelessWidget {
                           image: movie == null
                               ? null
                               : DecorationImage(
-                                  image: NetworkImage(
-                                      posterUrl(posterUrl(movie[index].posterPath))),
+                                  image: NetworkImage(posterUrl(
+                                      posterUrl(movie[index].posterPath))),
                                   fit: BoxFit.cover),
                           borderRadius: BorderRadius.circular(8),
                         ),

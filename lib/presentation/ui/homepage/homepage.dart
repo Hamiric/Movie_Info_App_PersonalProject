@@ -16,9 +16,11 @@ class Homepage extends StatelessWidget {
     return Consumer(
       builder: (context, ref, child) {        
         final homeState = ref.watch(homeViewModelProvider);
-        ref.read(homeViewModelProvider.notifier).setDio().then((_){
-          ref.read(homeViewModelProvider.notifier).setData();
-        });
+        if(!homeState.isLoading) {
+          ref.read(homeViewModelProvider.notifier).setDio().then((_){
+            ref.read(homeViewModelProvider.notifier).setData();
+          });
+        }
         return ReponsiveView(
           mobile: Scaffold(
             body: SafeArea(
