@@ -14,10 +14,10 @@ abstract interface class MovieDataSource {
   Future<MovieDetailDto?> fetchMovieDetail(int id);
 }
 
-class MovieDataSourceCRUD implements MovieDataSource {
+class MovieDataSourceImpl implements MovieDataSource {
   final dio;
 
-  MovieDataSourceCRUD(this.dio);
+  MovieDataSourceImpl(this.dio);
 
   /// 영화 현재 상영중 데이터 가져오기
   @override

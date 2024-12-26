@@ -19,34 +19,34 @@ void main() {
     final dio = Dio(options);
 
 
-    final movieDataSourceCRUD = MovieDataSourceCRUD(dio);
+    final movieDataSourceimpl = MovieDataSourceImpl(dio);
 
     MovieNowUpcommingDto? nowPlayingMovies =
-        await movieDataSourceCRUD.fetchNowPlayingMovies();
+        await movieDataSourceimpl.fetchNowPlayingMovies();
     expect(nowPlayingMovies!.page, 1);
 
     print(1);
 
     MovieDetailDto? movieDetail =
-        await movieDataSourceCRUD.fetchMovieDetail(845781);
+        await movieDataSourceimpl.fetchMovieDetail(845781);
     expect(movieDetail!.id, 845781);
 
     print(2);
     
     MoviePopularTopDto? popularMovies =
-        await movieDataSourceCRUD.fetchPopularMovies();
+        await movieDataSourceimpl.fetchPopularMovies();
     expect(popularMovies!.page, 1);
 
     print(3);
 
     MoviePopularTopDto? topRatedMovies =
-        await movieDataSourceCRUD.fetchTopRatedMovies();
+        await movieDataSourceimpl.fetchTopRatedMovies();
     expect(topRatedMovies!.page, 1);
 
     print(4);
 
     MovieNowUpcommingDto? upcomingMovies =
-        await movieDataSourceCRUD.fetchUpcomingMovies();
+        await movieDataSourceimpl.fetchUpcomingMovies();
     expect(upcomingMovies!.page, 1);
 
     print(5);
