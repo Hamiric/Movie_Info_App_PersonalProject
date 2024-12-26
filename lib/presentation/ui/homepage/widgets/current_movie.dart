@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:movie_info_app_personalproject/domain/entities/movie_entity.dart';
+import 'package:movie_info_app_personalproject/presentation/widgets/poster_url.dart';
 
 class CurrentMovie extends StatelessWidget {
-  const CurrentMovie({super.key});
+  const CurrentMovie({super.key, this.homeState});
+
+  final homeState;
 
   @override
   Widget build(BuildContext context) {
+    List<Movie>? movie = homeState.nowPlayingMovies;
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: List.generate(20, (index) {
+        children: List.generate(movie?.length ?? 10, (index) {
           String tag = 'current_$index';
           return Padding(
             padding: const EdgeInsets.only(right: 8),
@@ -23,8 +29,16 @@ class CurrentMovie extends StatelessWidget {
                   height: 180,
                   width: 120,
                   decoration: BoxDecoration(
-                      color: Colors.amber,
+                      image: movie == null
+                          ? null
+                          : DecorationImage(
+                              image:
+                                  NetworkImage(posterUrl(movie[index].posterPath)),
+                              fit: BoxFit.cover),
                       borderRadius: BorderRadius.circular(8)),
+                  child: movie == null
+                      ? Center(child: CircularProgressIndicator())
+                      : null,
                 ),
               ),
             ),
