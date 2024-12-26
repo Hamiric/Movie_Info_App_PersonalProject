@@ -11,10 +11,10 @@ class MovieProductionCompany extends StatelessWidget {
   Widget build(BuildContext context) {
     MovieDetail movie = detailState.movieDetail;
 
-    return Padding(
-      padding: const EdgeInsets.only(left: 24),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 24),
         child: Row(
           children: List.generate(movie.productionCompanyLogos.length, (index) {
             return movie.productionCompanyLogos[index] == 'null'

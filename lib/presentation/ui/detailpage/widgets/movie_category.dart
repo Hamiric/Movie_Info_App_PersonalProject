@@ -9,7 +9,7 @@ class MovieCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MovieDetail movie = detailState.movieDetail;
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -25,21 +25,26 @@ class MovieCategory extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(left: 24),
             child: Row(
-              children: List.generate(movie.genres.length, (index) { return Padding(
-                padding: const EdgeInsets.only(right: 4),
-                child: Container(
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(20)
+              children: List.generate(movie.genres.length, (index) {
+                return Padding(
+                  padding: const EdgeInsets.only(right: 4),
+                  child: Container(
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Center(
+                          child: Text(
+                        movie.genres[index],
+                        style: TextStyle(color: Colors.blue),
+                      )),
+                    ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Center(child: Text(movie.genres[index], style: TextStyle(color: Colors.blue),)),
-                  ),
-                ),
-              );}),
+                );
+              }),
             ),
           ),
         ),
