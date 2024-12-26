@@ -15,7 +15,7 @@ class PopularityMovie extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding: const EdgeInsets.only(left: 24),
+        padding: const EdgeInsets.only(left: 24, right: 16),
         child: Row(
           children: List.generate(
             movie?.length ?? 10,
