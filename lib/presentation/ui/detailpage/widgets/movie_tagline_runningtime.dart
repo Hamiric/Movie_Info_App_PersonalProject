@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:movie_info_app_personalproject/domain/entities/movie_detail_entitiy.dart';
 
 class MovieTaglineRunningtime extends StatelessWidget {
-  const MovieTaglineRunningtime({super.key, this.tagLine, this.runningTime});
+  const MovieTaglineRunningtime({super.key, this.detailState});
 
-  final tagLine;
-  final runningTime;
+  final detailState;
 
   @override
   Widget build(BuildContext context) {
+    MovieDetail movie = detailState.movieDetail;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Text(tagLine),
+          child: Text(movie.tagline),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Text('$runningTime분'),
+          child: Text('${movie.runtime}분'),
         ),
       ],
     );

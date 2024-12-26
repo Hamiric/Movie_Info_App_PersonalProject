@@ -11,7 +11,7 @@ final router = GoRouter(
       routes: [
         GoRoute(
           path: 'post',
-          pageBuilder: (context, state) => slideTransition(Detailpage(tag: state.extra,)),
+          pageBuilder: (context, state) => slideTransition(Detailpage(extra: state.extra,)),
         )
       ],
     ),
