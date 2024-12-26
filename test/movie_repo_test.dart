@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:movie_info_app_personalproject/data/repositories/movie_repository_impl.dart';
 import 'package:movie_info_app_personalproject/data/sources/env.dart';
 import 'package:movie_info_app_personalproject/domain/entities/movie_detail_entitiy.dart';
 import 'package:movie_info_app_personalproject/domain/entities/movie_entity.dart';
-import 'package:movie_info_app_personalproject/domain/repositories/movie_repository.dart';
 
 void main(){
   test('movie_repo_test', () async {
