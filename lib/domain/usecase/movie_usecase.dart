@@ -3,27 +3,32 @@ import 'package:movie_info_app_personalproject/domain/entities/movie_detail_enti
 import 'package:movie_info_app_personalproject/domain/entities/movie_entity.dart';
 
 class MovieUsecase {
-  final MovieRepositoryImpl _movieRepositoryImpl;
+  final dio;
 
-  MovieUsecase(this._movieRepositoryImpl);
+  MovieUsecase(this.dio);
 
   Future<List<Movie>?> fetchNowPlayingMovies() async {
-    return await _movieRepositoryImpl.fetchNowPlayingMovies();
+    final MovieRepositoryImpl movieRepositoryImpl = MovieRepositoryImpl(dio);
+    return await movieRepositoryImpl.fetchNowPlayingMovies();
   }
 
   Future<List<Movie>?> fetchPopularMovies() async {
-    return await _movieRepositoryImpl.fetchPopularMovies();
+    final MovieRepositoryImpl movieRepositoryImpl = MovieRepositoryImpl(dio);
+    return await movieRepositoryImpl.fetchPopularMovies();
   }
 
   Future<List<Movie>?> fetchTopRatedMovies() async {
-    return await _movieRepositoryImpl.fetchTopRatedMovies();
+    final MovieRepositoryImpl movieRepositoryImpl = MovieRepositoryImpl(dio);
+    return await movieRepositoryImpl.fetchTopRatedMovies();
   }
 
   Future<List<Movie>?> fetchUpcomingMovies() async {
-    return await _movieRepositoryImpl.fetchUpcomingMovies();
+    final MovieRepositoryImpl movieRepositoryImpl = MovieRepositoryImpl(dio);
+    return await movieRepositoryImpl.fetchUpcomingMovies();
   }
 
   Future<MovieDetail?> fetchMovieDetail(int id) async {
-    return await _movieRepositoryImpl.fetchMovieDetail(id);
+    final MovieRepositoryImpl movieRepositoryImpl = MovieRepositoryImpl(dio);
+    return await movieRepositoryImpl.fetchMovieDetail(id);
   }
 }
