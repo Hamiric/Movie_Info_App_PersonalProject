@@ -14,43 +14,46 @@ class HighestRateMovie extends StatelessWidget {
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(
-        children: List.generate(20, (index) {
-          String tag = 'highestrage_$index';
-          return Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: GestureDetector(
-              onTap: () {
-                if (movie != null) {
-                  Map<String, dynamic> extra = {
-                    "tag": tag,
-                    "id": movie[index].id,
-                    "poster": movie[index].posterPath,
-                  };
-                  context.go('/post/', extra: extra);
-                }
-              },
-              child: Hero(
-                tag: tag,
-                child: Container(
-                  height: 180,
-                  width: 120,
-                  decoration: BoxDecoration(
-                      image: movie == null
-                          ? null
-                          : DecorationImage(
-                              image: NetworkImage(
-                                  posterUrl(movie[index].posterPath)),
-                              fit: BoxFit.cover),
-                      borderRadius: BorderRadius.circular(8)),
-                  child: movie == null
-                      ? Center(child: CircularProgressIndicator())
-                      : null,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 24, right: 16),
+        child: Row(
+          children: List.generate(20, (index) {
+            String tag = 'highestrage_$index';
+            return Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: GestureDetector(
+                onTap: () {
+                  if (movie != null) {
+                    Map<String, dynamic> extra = {
+                      "tag": tag,
+                      "id": movie[index].id,
+                      "poster": movie[index].posterPath,
+                    };
+                    context.go('/post/', extra: extra);
+                  }
+                },
+                child: Hero(
+                  tag: tag,
+                  child: Container(
+                    height: 180,
+                    width: 120,
+                    decoration: BoxDecoration(
+                        image: movie == null
+                            ? null
+                            : DecorationImage(
+                                image: NetworkImage(
+                                    posterUrl(movie[index].posterPath)),
+                                fit: BoxFit.cover),
+                        borderRadius: BorderRadius.circular(8)),
+                    child: movie == null
+                        ? Center(child: CircularProgressIndicator())
+                        : null,
+                  ),
                 ),
               ),
-            ),
-          );
-        }),
+            );
+          }),
+        ),
       ),
     );
   }

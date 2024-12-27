@@ -25,27 +25,42 @@ class Homepage extends StatelessWidget {
           mobile: Scaffold(
             body: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.only(top: 24, left: 24),
+                padding: const EdgeInsets.only(top: 24),
                 child: ListView(
                   scrollDirection: Axis.vertical,
                   children: [
-                    Text('가장 인기있는', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 24),
+                      child: Text('가장 인기있는', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    ),
                     SizedBox(height: 16,),
                     MostPopularMovie(homeState: homeState),
                     SizedBox(height: 16,),
-                    Text('현재 상영중', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 24),
+                      child: Text('현재 상영중', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    ),
                     SizedBox(height: 8,),
                     CurrentMovie(homeState: homeState),
                     SizedBox(height: 16,),
-                    Text('인기순', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 24),
+                      child: Text('인기순', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    ),
                     SizedBox(height: 8,),
                     PopularityMovie(homeState: homeState),
                     SizedBox(height: 16,),
-                    Text('평점 높은 순', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 24),
+                      child: Text('평점 높은 순', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    ),
                     SizedBox(height: 8,),
                     HighestRateMovie(homeState: homeState),
                     SizedBox(height: 16,),
-                    Text('개봉 예정', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 24),
+                      child: Text('개봉 예정', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    ),
                     SizedBox(height: 8,),
                     UpcommingMove(homeState: homeState),
                     SizedBox(height: 24,),

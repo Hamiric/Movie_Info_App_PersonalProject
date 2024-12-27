@@ -15,7 +15,7 @@ class MostPopularMovie extends StatelessWidget {
     List<Movie>? movie = homeState.popularMovies;
 
     return Padding(
-      padding: const EdgeInsets.only(right: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Hero(
         tag: tag,
         child: GestureDetector(
