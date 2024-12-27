@@ -19,7 +19,7 @@ class Recommendpage extends StatelessWidget {
           mobile: Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: Text('GPT한테 영화 추천받기'),
+              title: Text('GPT의 영화 추천'),
               backgroundColor: Colors.transparent,
               scrolledUnderElevation: 0,
               actions: [
@@ -30,7 +30,9 @@ class Recommendpage extends StatelessWidget {
                           builder: (context) => RecommendAlertDialog(),
                           barrierDismissible: false);
                     },
-                    icon: Icon(Icons.help_outline_outlined))
+                    icon: Icon(Icons.help_outline_outlined)
+                ),
+                SizedBox(width: 8,),
               ],
             ),
             body: SafeArea(
@@ -43,7 +45,7 @@ class Recommendpage extends StatelessWidget {
                   SizedBox(
                     height: 16,
                   ),
-                  RecommendButton(),
+                  RecommendButton(recommendState: recommendState),
                 ],
               ),
             ),

@@ -1,19 +1,29 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RecommendState {
   List<String> defaultTag;
   List<String> customTag;
   int maxTag;
+  bool isInput;
+  TextEditingController controller;
 
-  RecommendState(this.defaultTag, this.customTag, this.maxTag);
+  RecommendState(this.defaultTag, this.customTag, this.maxTag, this.isInput,
+      this.controller);
 
   RecommendState copyWith({
     List<String>? defaultTag,
     List<String>? customTag,
     int? maxTag,
+    bool? isInput,
+    TextEditingController? controller,
   }) =>
       RecommendState(
-          defaultTag ?? this.defaultTag, customTag ?? this.customTag, maxTag ?? this.maxTag);
+          defaultTag ?? this.defaultTag,
+          customTag ?? this.customTag,
+          maxTag ?? this.maxTag,
+          isInput ?? this.isInput,
+          controller ?? this.controller);
 }
 
 class RecommendViewModel extends AutoDisposeNotifier<RecommendState> {
@@ -84,16 +94,21 @@ class RecommendViewModel extends AutoDisposeNotifier<RecommendState> {
       '2020년대'
     ];
 
-    return RecommendState(defaultTag, [], 10);
+    ref.onDispose((){
+      state.controller.dispose();
+    });
+
+    return RecommendState(defaultTag, [], 10, false, TextEditingController());
   }
 
   /// 태그 추가하기
   void addTag(String tag) {
-    if (!state.customTag.any((element) => element == tag) && state.customTag.length < state.maxTag) {
+    if (!state.customTag.any((element) => element == tag) &&
+        state.customTag.length < state.maxTag) {
       List<String> customTag = List<String>.from(state.customTag);
       customTag.add(tag);
 
-      state = state.copyWith(customTag: customTag);
+      state = state.copyWith(customTag: customTag, isInput: false);
     }
   }
 
@@ -102,8 +117,21 @@ class RecommendViewModel extends AutoDisposeNotifier<RecommendState> {
     List<String> customTag = List<String>.from(state.customTag);
     customTag.remove(tag);
 
-    state = state.copyWith(customTag: customTag);
+    state = state.copyWith(customTag: customTag, isInput: false);
   }
+
+  /// 커스텀 태그를 입력중인 상태
+  void isInputState() {
+    state.controller.text = '  ';
+    state = state.copyWith(isInput: true);
+  }
+
+  /// 더이상 커스텀 태그를 입력중인 상태가 아님
+  void isNotInputState() {
+    state.controller.text = '';
+    state = state.copyWith(isInput: false);
+  }
+  
 }
 
 final recommendViewModelProvider =

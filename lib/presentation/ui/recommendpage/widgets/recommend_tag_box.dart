@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_info_app_personalproject/presentation/viewmodels/recommendpage/recommend_view_model.dart';
 
@@ -75,10 +76,10 @@ class RecommendTagBox extends StatelessWidget {
                 children:
                     List.generate(recommendState.customTag.length + 1, (index) {
                   if (recommendState.customTag.length == 0) {
-                    return plusBox('+');
+                    return plusBox('+', recommendState);
                   } else {
                     if (index == recommendState.customTag.length) {
-                      return plusBox('+');
+                      return plusBox('+', recommendState);
                     }
                     return tagBox(recommendState.customTag[index]);
                   }
@@ -157,26 +158,63 @@ class RecommendTagBox extends StatelessWidget {
     );
   }
 
-  Widget plusBox(String tag) {
-    return IntrinsicWidth(
-      child: GestureDetector(
-        onTap: () {},
-        child: Container(
-          height: 40,
-          decoration: BoxDecoration(
-              color: Colors.transparent,
-              border: Border.all(color: Colors.white),
-              borderRadius: BorderRadius.circular(20)),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Center(
-                child: Text(
-              '  $tag  ',
-              style: TextStyle(color: Colors.blue),
-            )),
-          ),
-        ),
-      ),
+  Widget plusBox(String tag, var recommendState) {
+    return Consumer(
+      builder: (context, ref, child) {
+        return IntrinsicWidth(
+          child: recommendState.isInput == false
+              ? GestureDetector(
+                  onTap: () {
+                    ref.read(recommendViewModelProvider.notifier).isInputState();
+                  },
+                  child: Container(
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Center(
+                          child: Text(
+                        '  $tag  ',
+                        style: TextStyle(color: Colors.blue),
+                      )),
+                    ),
+                  ),
+                )
+              : Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Center(
+                        child: TextField(
+                          controller: recommendState.controller,
+                          maxLength: 20,
+                          maxLines: 1,
+                          onSubmitted: (value) {
+                            if(recommendState.controller.text.trim() == ''){
+                              ref.read(recommendViewModelProvider.notifier).isNotInputState();
+                              return;
+                            }
+                            ref.read(recommendViewModelProvider.notifier).addTag(recommendState.controller.text);
+                            ref.read(recommendViewModelProvider.notifier).isNotInputState();
+                          },
+                          decoration: InputDecoration(
+                            border: InputBorder.none
+                          ),
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]')),
+                          ],
+                    )),
+                  ),
+                ),
+        );
+      },
     );
   }
 }

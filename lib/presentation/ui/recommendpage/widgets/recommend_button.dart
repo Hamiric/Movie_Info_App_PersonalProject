@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class RecommendButton extends StatelessWidget {
-  const RecommendButton({super.key});
+  const RecommendButton({super.key, this.recommendState});
+
+  final recommendState;
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +11,11 @@ class RecommendButton extends StatelessWidget {
       child: SizedBox(
         width: 200,
         child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              if(!recommendState.isInput){
+                print('버튼 클릭');
+              }
+            },
             style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
