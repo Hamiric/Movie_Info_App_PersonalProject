@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_info_app_personalproject/presentation/ui/detailpage/detailpage.dart';
 import 'package:movie_info_app_personalproject/presentation/ui/homepage/homepage.dart';
+import 'package:movie_info_app_personalproject/presentation/ui/recommendpage/recommendpage.dart';
 
 final router = GoRouter(
   routes: [
@@ -11,8 +12,15 @@ final router = GoRouter(
       routes: [
         GoRoute(
           path: 'post',
-          pageBuilder: (context, state) => slideTransition(Detailpage(extra: state.extra,)),
-        )
+          pageBuilder: (context, state) => slideTransition(Detailpage(
+            extra: state.extra,
+          )),
+        ),
+        GoRoute(
+          path: 'recommend',
+          builder: (context, state) => const Recommendpage(),
+          // routes
+        ),
       ],
     ),
   ],
@@ -24,7 +32,6 @@ final router = GoRouter(
   }
   */
 );
-
 
 /// 페이지 슬라이드 효과
 CustomTransitionPage slideTransition(Widget page) {

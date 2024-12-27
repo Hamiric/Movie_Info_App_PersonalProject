@@ -26,7 +26,7 @@ class MostPopularMovie extends StatelessWidget {
                 "id": movie[0].id,
                 "poster": movie[0].posterPath,
               };
-              context.go('/post/', extra: extra);
+              context.go('/post', extra: extra);
             }
           },
           child: Container(
