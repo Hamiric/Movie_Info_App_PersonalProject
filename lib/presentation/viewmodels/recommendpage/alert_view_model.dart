@@ -27,7 +27,7 @@ class AlertViewModel extends AutoDisposeNotifier<AlertState> {
   AlertState build() {
     List<String> explanation = [
       '추천받고 싶은 영화와 \n관련될것 같은 태그를 추가합니다.',
-      '추천받기를 눌러 \nGPT한테 영화를 추천받아 보세요!',
+      '추천받기를 눌러 \nAI한테 영화를 추천받아 보세요!',
     ];
 
     List<String> imgUrl = [

@@ -19,7 +19,7 @@ class Recommendpage extends StatelessWidget {
           mobile: Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: Text('GPT의 영화 추천'),
+              title: Text('AI의 영화 추천'),
               backgroundColor: Colors.transparent,
               scrolledUnderElevation: 0,
               actions: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_info_app_personalproject/presentation/ui/recommendpage/widgets/recommend_confirm_alert.dart';
 
 class RecommendButton extends StatelessWidget {
   const RecommendButton({super.key, this.recommendState});
@@ -12,8 +13,12 @@ class RecommendButton extends StatelessWidget {
         width: 200,
         child: ElevatedButton(
             onPressed: () {
-              if(!recommendState.isInput){
-                print('버튼 클릭');
+              if (!recommendState.isInput) {
+                showDialog(
+                  context: context,
+                  builder: (context) => RecommendConfirmAlert(),
+                  barrierDismissible: false,
+                );
               }
             },
             style: ElevatedButton.styleFrom(
