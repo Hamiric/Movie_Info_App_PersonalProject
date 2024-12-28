@@ -1,7 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_info_app_personalproject/data/sources/env.dart';
 import 'package:movie_info_app_personalproject/domain/entities/ai_response_entitiy.dart';
+import 'package:movie_info_app_personalproject/domain/entities/movie_entity.dart';
 import 'package:movie_info_app_personalproject/domain/usecase/ai_response_usecase.dart';
+import 'package:movie_info_app_personalproject/domain/usecase/movie_usecase.dart';
 
 class AiState {
   List<String>? customTag;
@@ -12,8 +15,11 @@ class AiState {
 
   AiResponseEntitiy? response;
 
+  List<Movie>? searchMovies;
+  int index;
+
   AiState(this.progress, this.customTag, this.progresslog, this.progressIndex,
-      this.response);
+      this.response, this.searchMovies, this.index);
 
   AiState copyWith({
     List<String>? customTag,
@@ -21,13 +27,16 @@ class AiState {
     List<String>? progresslog,
     int? progressIndex,
     AiResponseEntitiy? response,
+    List<Movie>? searchMovies,
+    int? index,
   }) =>
       AiState(
           progress ?? this.progress,
           customTag ?? this.customTag,
           progresslog ?? this.progresslog,
           progressIndex ?? this.progressIndex,
-          response ?? this.response);
+          response ?? this.response,
+          searchMovies ?? this.searchMovies, index ?? this.index);
 }
 
 class AiViewModel extends AutoDisposeNotifier<AiState> {
@@ -38,7 +47,7 @@ class AiViewModel extends AutoDisposeNotifier<AiState> {
       '추천영화들의 데이터를 가져오는중...',
       '완료'
     ];
-    return AiState(0, null, progresslog, 0, null);
+    return AiState(0, null, progresslog, 0, null, null, 0);
   }
 
   /// 추천페이지에서 Tag 리스트 받기
@@ -74,7 +83,51 @@ class AiViewModel extends AutoDisposeNotifier<AiState> {
       }
     }
     state.response = await aiResponseUsecase.getAiResponse(content);
+    for(int i = 0 ; i < state.response!.recommendMovies.length ; i ++){
+       print(state.response!.recommendMovies[i].title);
+    }
     addProgress();
+  }
+
+  /// 제목으로 영화 검색
+  Future<void> searchMovie() async {
+    List<String> query = [];
+    for (int i = 0; i < state.response!.recommendMovies.length; i++) {
+      query.add(state.response!.recommendMovies[i].title);
+    }
+
+    final env = Env();
+    await env.loadEnv();
+
+    final options = BaseOptions(headers: {
+      'Authorization': 'Bearer ${env.getKey('TMDB_ACCESS_TOKEN')}',
+      'Accept': 'application/json',
+    });
+
+    final dio = Dio(options);
+
+    final movieUsecase = MovieUsecase(dio);
+    state.searchMovies = await movieUsecase.fetchMovieSearch(query);
+
+    addProgress();
+  }
+
+  /// 페이지 앞으로 넘김
+  void nextPage(){
+    if(state.index == (state.searchMovies!.length - 1)){
+      return;
+    }
+    int index = state.index + 1;
+    state = state.copyWith(index: index);
+  }
+
+  /// 페이지 전으로 넘김
+  void beforePage(){
+    if(state.index == 0){
+      return;
+    }
+    int index = state.index - 1;
+    state = state.copyWith(index: index);
   }
 }
 

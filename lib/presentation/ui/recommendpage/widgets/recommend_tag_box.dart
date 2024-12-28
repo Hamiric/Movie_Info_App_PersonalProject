@@ -79,6 +79,9 @@ class RecommendTagBox extends StatelessWidget {
                     return plusBox('+', recommendState);
                   } else {
                     if (index == recommendState.customTag.length) {
+                      if(index == recommendState.maxTag){
+                        return SizedBox.shrink();
+                      }
                       return plusBox('+', recommendState);
                     }
                     return tagBox(recommendState.customTag[index]);

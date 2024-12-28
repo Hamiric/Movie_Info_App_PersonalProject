@@ -98,7 +98,7 @@ class RecommendViewModel extends AutoDisposeNotifier<RecommendState> {
       state.controller.dispose();
     });
 
-    return RecommendState(defaultTag, [], 10, false, TextEditingController());
+    return RecommendState(defaultTag, [], 5, false, TextEditingController());
   }
 
   /// 태그 추가하기

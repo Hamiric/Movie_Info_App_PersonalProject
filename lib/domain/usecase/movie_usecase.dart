@@ -31,4 +31,9 @@ class MovieUsecase {
     final MovieRepositoryImpl movieRepositoryImpl = MovieRepositoryImpl(dio);
     return await movieRepositoryImpl.fetchMovieDetail(id);
   }
+
+  Future<List<Movie>?> fetchMovieSearch(List<String> query) async{
+    final MovieRepositoryImpl movieRepositoryImpl = MovieRepositoryImpl(dio);
+    return await movieRepositoryImpl.fetchMovieSearch(query);
+  }
 }

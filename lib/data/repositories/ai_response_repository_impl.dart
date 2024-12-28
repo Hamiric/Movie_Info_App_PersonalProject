@@ -15,7 +15,9 @@ class AiResponseRepositoryImpl implements AiResponseRepository {
 다음 태그에 해당되는 영화 5개를 추천해줘.
 $content
 
-답변은 json형식으로, title값은 영어로만, reason값은 한글로 이 영화를 왜 추천하는지를 100자 이내로 넣어줘.
+답변은 json형식으로, title값은 영어로만, reason값은 한글로 이 영화를 왜 추천하는지를 200자 이내로 넣어줘.
+reason마지막에는 ~이기 때문에 추천합니다. 로 끝맺음되어야 해.
+
 예시는 다음과 같아. 분리하기 쉽게 {} 양끝에 #을 붙여줘
 #{
   recommend_movie: [

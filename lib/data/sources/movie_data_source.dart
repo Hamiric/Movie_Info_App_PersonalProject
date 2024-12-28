@@ -1,17 +1,19 @@
 import 'package:movie_info_app_personalproject/data/models/movie_detail_dto.dart';
 import 'package:movie_info_app_personalproject/data/models/movie_now_upcomming_dto.dart';
-import 'package:movie_info_app_personalproject/data/models/movie_popular_top_dto.dart';
+import 'package:movie_info_app_personalproject/data/models/movie_popular_top_search_dto.dart';
 
 abstract interface class MovieDataSource {
   Future<MovieNowUpcommingDto?> fetchNowPlayingMovies();
 
-  Future<MoviePopularTopDto?> fetchPopularMovies();
+  Future<MoviePopularSearchTopDto?> fetchPopularMovies();
 
-  Future<MoviePopularTopDto?> fetchTopRatedMovies();
+  Future<MoviePopularSearchTopDto?> fetchTopRatedMovies();
 
   Future<MovieNowUpcommingDto?> fetchUpcomingMovies();
 
   Future<MovieDetailDto?> fetchMovieDetail(int id);
+
+  Future<MoviePopularSearchTopDto?> fetchMovieSearch(String query);
 }
 
 class MovieDataSourceImpl implements MovieDataSource {
@@ -42,23 +44,23 @@ class MovieDataSourceImpl implements MovieDataSource {
 
   /// 영화 인기순 데이터 가져오기
   @override
-  Future<MoviePopularTopDto?> fetchPopularMovies() async {
+  Future<MoviePopularSearchTopDto?> fetchPopularMovies() async {
     String url =
         'https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1';
     final response = await dio.get(url);
 
-    final movieResponseDto = MoviePopularTopDto.fromJson(response.data);
+    final movieResponseDto = MoviePopularSearchTopDto.fromJson(response.data);
     return movieResponseDto;
   }
 
   /// 영화 평점 높은순 데이터 가져오기
   @override
-  Future<MoviePopularTopDto?> fetchTopRatedMovies() async {
+  Future<MoviePopularSearchTopDto?> fetchTopRatedMovies() async {
     String url =
         'https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1';
     final response = await dio.get(url);
 
-    final movieResponseDto = MoviePopularTopDto.fromJson(response.data);
+    final movieResponseDto = MoviePopularSearchTopDto.fromJson(response.data);
     return movieResponseDto;
   }
 
@@ -70,6 +72,16 @@ class MovieDataSourceImpl implements MovieDataSource {
     final response = await dio.get(url);
 
     final movieResponseDto = MovieNowUpcommingDto.fromJson(response.data);
+    return movieResponseDto;
+  }
+
+  /// 영화 제목으로 데이터 가져오기
+  @override
+  Future<MoviePopularSearchTopDto?> fetchMovieSearch(String query) async {
+    String url = 'https://api.themoviedb.org/3/search/movie?query=$query&language=ko-KR&page=1';
+    final response = await dio.get(url);
+
+    final movieResponseDto = MoviePopularSearchTopDto.fromJson(response.data);
     return movieResponseDto;
   }
 }

@@ -22,9 +22,16 @@ final router = GoRouter(
           builder: (context, state) => const Recommendpage(),
         ),
         GoRoute(
-          path: 'ai',
-          builder: (context, state) => Aipage(extra: state.extra),
-        )
+            path: 'ai',
+            builder: (context, state) => Aipage(extra: state.extra),
+            routes: [
+              GoRoute(
+                path: 'post',
+                pageBuilder: (context, state) => slideTransition(Detailpage(
+                  extra: state.extra,
+                )),
+              ),
+            ])
       ],
     ),
   ],

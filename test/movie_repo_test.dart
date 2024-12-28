@@ -40,5 +40,8 @@ void main(){
     MovieDetail? movieDetail = await movieRepositoryImpl.fetchMovieDetail(845781);
     // print(movieDetail!.id);
     expect(movieDetail!.id, 845781);
+
+    List<Movie>? searchMovies = await movieRepositoryImpl.fetchMovieSearch(['The Exorcist','The Shining']);
+    print(searchMovies![0].id);
   });
 }

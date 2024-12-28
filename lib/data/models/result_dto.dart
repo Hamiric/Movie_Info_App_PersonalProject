@@ -8,7 +8,7 @@ class Result {
   String overview;
   double popularity;
   String posterPath;
-  DateTime releaseDate;
+  String releaseDate;
   String title;
   bool video;
   double voteAverage;
@@ -41,7 +41,7 @@ class Result {
     String? overview,
     double? popularity,
     String? posterPath,
-    DateTime? releaseDate,
+    String? releaseDate,
     String? title,
     bool? video,
     double? voteAverage,
@@ -66,7 +66,7 @@ class Result {
   Result.fromJson(Map<String, dynamic> json)
       : this(
           adult: json['adult'],
-          backdropPath: json['backdrop_path'],
+          backdropPath: json['backdrop_path'] ?? '',
           genreIds:
               List<int>.from(json['genre_ids'].map((item) => item as int)),
           id: json['id'],
@@ -74,8 +74,8 @@ class Result {
           originalTitle: json['original_title'],
           overview: json['overview'],
           popularity: json['popularity'].toDouble(),
-          posterPath: json['poster_path'],
-          releaseDate: DateTime.parse(json['release_date']),
+          posterPath: json['poster_path'] ?? '',
+          releaseDate: json['release_date'],
           title: json['title'],
           video: json['video'],
           voteAverage: json['vote_average'].toDouble(),
