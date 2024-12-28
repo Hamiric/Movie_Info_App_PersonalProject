@@ -65,4 +65,21 @@ class MovieRepositoryImpl implements MovieRepository {
 
     return MovieDetail.fromData(movieDetail!);
   }
+
+  /// 영화 제목으로 데이터 가져오기
+  @override
+  Future<List<Movie>?> fetchMovieSearch(List<String> query) async {
+    final movieDataSourceImpl = MovieDataSourceImpl(dio);
+
+    
+    List<Movie> searchList = [];
+    
+    for (int i = 0; i < query.length; i++) {
+      final searchMovies = await movieDataSourceImpl.fetchMovieSearch(query[i]);
+      final list = searchMovies!.results.map((item)=> Movie.fromData(item)).toList();
+      searchList.add(list.first);
+    }
+    
+    return searchList;
+  }
 }

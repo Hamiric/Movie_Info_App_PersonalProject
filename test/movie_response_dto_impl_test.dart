@@ -2,12 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:movie_info_app_personalproject/data/models/movie_detail_dto.dart';
 import 'package:movie_info_app_personalproject/data/models/movie_now_upcomming_dto.dart';
-import 'package:movie_info_app_personalproject/data/models/movie_popular_top_dto.dart';
+import 'package:movie_info_app_personalproject/data/models/movie_popular_top_search_dto.dart';
 import 'package:movie_info_app_personalproject/data/sources/env.dart';
 import 'package:movie_info_app_personalproject/data/sources/movie_data_source.dart';
 
 void main() {
-  test('movie_response_dto_crud test', () async {
+  test('movie_response_dto_source test', () async {
     final env = Env();
     await env.loadEnv();
 
@@ -33,13 +33,13 @@ void main() {
 
     print(2);
     
-    MoviePopularTopDto? popularMovies =
+    MoviePopularSearchTopDto? popularMovies =
         await movieDataSourceimpl.fetchPopularMovies();
     expect(popularMovies!.page, 1);
 
     print(3);
 
-    MoviePopularTopDto? topRatedMovies =
+    MoviePopularSearchTopDto? topRatedMovies =
         await movieDataSourceimpl.fetchTopRatedMovies();
     expect(topRatedMovies!.page, 1);
 
@@ -50,5 +50,11 @@ void main() {
     expect(upcomingMovies!.page, 1);
 
     print(5);
+
+    MoviePopularSearchTopDto? searchMovies =
+        await movieDataSourceimpl.fetchMovieSearch('The Babadook');
+    expect(topRatedMovies!.page, 1);
+
+    print(6);
   });
 }

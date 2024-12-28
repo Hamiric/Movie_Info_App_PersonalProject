@@ -38,7 +38,7 @@ class MovieCategory extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: Center(
                           child: Text(
-                        movie.genres[index],
+                        '# ${movie.genres[index]}',
                         style: TextStyle(color: Colors.blue),
                       )),
                     ),

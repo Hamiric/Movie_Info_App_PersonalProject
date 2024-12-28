@@ -33,7 +33,7 @@ class PopularityMovie extends StatelessWidget {
                             "id": movie[index].id,
                             "poster": movie[index].posterPath,
                           };
-                          context.go('/post/', extra: extra);
+                          context.go('/post', extra: extra);
                         }
                       },
                       child: Hero(

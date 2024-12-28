@@ -1,31 +1,31 @@
 import 'package:movie_info_app_personalproject/data/models/result_dto.dart';
 
-class MoviePopularTopDto {
+class MoviePopularSearchTopDto {
   int page;
   List<Result> results;
   int totalPages;
   int totalResults;
 
-  MoviePopularTopDto({
+  MoviePopularSearchTopDto({
     required this.page,
     required this.results,
     required this.totalPages,
     required this.totalResults,
   });
 
-  MoviePopularTopDto copyWith({
+  MoviePopularSearchTopDto copyWith({
     int? page,
     List<Result>? results,
     int? totalPages,
     int? totalResults,
   }) =>
-      MoviePopularTopDto(
+      MoviePopularSearchTopDto(
           page: page ?? this.page,
           results: results ?? this.results,
           totalPages: totalPages ?? this.totalPages,
           totalResults: totalResults ?? this.totalResults);
 
-  MoviePopularTopDto.fromJson(Map<String, dynamic> json)
+  MoviePopularSearchTopDto.fromJson(Map<String, dynamic> json)
       : this(
           page: json['page'],
           results: List<Result>.from(
