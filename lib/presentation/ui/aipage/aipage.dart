@@ -18,6 +18,7 @@ class _AipageState extends ConsumerState<Aipage> {
   void initState() {
     Future.microtask(() {
       ref.read(aiViewModelProvider.notifier).setData(widget.extra);
+      ref.read(aiViewModelProvider.notifier).aiResponse();
     });
     super.initState();
   }
