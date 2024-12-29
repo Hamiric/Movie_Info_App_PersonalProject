@@ -110,7 +110,7 @@ class ResponseWindow extends StatelessWidget {
                       },
                       icon: Icon(
                         Icons.navigate_next,
-                        color: aiState.index == 4 ? Colors.grey[800] : null,
+                        color: aiState.index == aiState.searchMovies.length-1 ? Colors.grey[800] : null,
                       )),
                 ],
               );

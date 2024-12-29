@@ -12,7 +12,17 @@ class AiResponseSourceImpl implements AiResponseSource {
   /// AI 응답 가져오기
   @override
   Future<AiResponseDto?> getAiResponse(String prompt, Env env) async {
-    final model = GenerativeModel(model: 'gemini-1.5-flash', apiKey: env.getKey('GEMINI_API_KEY')!);
+    final generationConfig = GenerationConfig(
+      temperature: 0.5,
+      topP: 0.3,
+      topK: 16,
+    );
+    
+    final model = GenerativeModel(
+        model: 'gemini-1.5-flash',
+        apiKey: env.getKey('GEMINI_API_KEY')!,
+        generationConfig: generationConfig);
+
     final content = [Content.text(prompt)];
 
     final response = await model.generateContent(content);

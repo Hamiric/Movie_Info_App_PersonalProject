@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_info_app_personalproject/data/sources/env.dart';
 import 'package:movie_info_app_personalproject/domain/entities/ai_response_entitiy.dart';
