@@ -76,7 +76,7 @@ class Result {
           popularity: json['popularity'].toDouble(),
           posterPath: json['poster_path'] ?? '',
           releaseDate: json['release_date'],
-          title: json['title'],
+          title: json['title'].toString(),
           video: json['video'],
           voteAverage: json['vote_average'].toDouble(),
           voteCount: json['vote_count'],

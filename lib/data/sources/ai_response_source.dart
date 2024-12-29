@@ -13,9 +13,9 @@ class AiResponseSourceImpl implements AiResponseSource {
   @override
   Future<AiResponseDto?> getAiResponse(String prompt, Env env) async {
     final generationConfig = GenerationConfig(
-      temperature: 0.5,
-      topP: 0.3,
-      topK: 16,
+      temperature: 1.0,
+      topP: 1.0,
+      topK: 50,
     );
     
     final model = GenerativeModel(

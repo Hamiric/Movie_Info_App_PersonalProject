@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_info_app_personalproject/data/sources/env.dart';
 import 'package:movie_info_app_personalproject/domain/entities/ai_response_entitiy.dart';
@@ -59,6 +58,11 @@ class AiViewModel extends AutoDisposeNotifier<AiState> {
   /// 추천페이지에서 Tag 리스트 받기
   void setData(List<String> data) {
     final customTag = List<String>.from(data);
+
+    for(int i = 0 ; i < customTag.length ; i ++){
+      log(customTag[i], name: 'tag');
+    }
+
     state = state.copyWith(customTag: customTag);
   }
 
