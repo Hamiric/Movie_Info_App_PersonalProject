@@ -19,7 +19,8 @@ class RecommendAlertDialog extends StatelessWidget {
                 width: 240,
                 height: 300,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  // color: Colors.white,
+                  image: DecorationImage(image: AssetImage(alertState.imgUrl[alertState.currentPageIndex]),fit: BoxFit.contain)
                   // assetimage
                 ),
               ),

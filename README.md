@@ -5,13 +5,13 @@
 아래의 기능들이 있는 영화 정보 앱
 
 ## 실행 영상
-[[프로젝트 실행 영상]](https://github.com/Hamiric/Movie_Info_App_PersonalProject)
+[[프로젝트 실행 영상]](https://youtu.be/OFab2P-uKIw)
 
 <br>
 
-| HomePage | DetailPage |
-| --- | --- |
-| <img src='readme/HomePage.png'> | <img src='readme/DetailPage_1.png'> |
+| HomePage | DetailPage | RecommendPage | AiPage |
+| --- | --- | --- | --- |
+| <img src='readme/HomePage.png'> | <img src='readme/DetailPage.png'> | <img src='readme/RecommendPage.png'> | <img src='readme/AiPage.png'> |
 
 <br>
 
@@ -36,7 +36,9 @@
 >* 테스트 코드 작성하기 :
 <br>각각의 로직이 정상적으로 작동하는지 확인할 수 있는 테스트 코드를 작성하기<br><br>
 #### < 자유 구현 >
->* 
+>* 입력된 태그를 기반으로, AI가 영화를 추천해주는 기능 : 
+<br>태그를 입력하여, AI에게 태그에 맞는 영화를 5개정도 추천해주도록 한다. 태그 입력은, 추천 태그중 하나를 눌러서 넣어도 되고, + 버튼을 눌러 직접 작성해도 된다. 다만, 너무 터무니 없는 태그를 넣었을 경우 AI가 엉뚱한 답변을 할 수도 있으니 주의!<br><br>
+>* AI가 추천해주는 영화를 검색하는 기능 : <br>AI가 영화를 추천해 주면, 자동으로 해당 영화의 제목을 TMDB에 검색하여, 해당 영화의 정보를 받아온다.<br><br>
 
 ## 🚨 Trouble Shooting
 
@@ -57,5 +59,5 @@
 | Language | ![Dart](https://img.shields.io/badge/Dart-0175C2?style=flat-square&logo=Dart&logoColor=white) |
 | Framework | ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=Flutter&logoColor=white) |
 | Code Editor | ![VSCode](https://img.shields.io/badge/VSCode-0175C2?style=flat-square) |
-| Library | ![RiverPod](https://img.shields.io/badge/RiverPod-6DB33F?style=flat-square) ![Go_router](https://img.shields.io/badge/Go_router-007396?style=flat-square) ![Dio](https://img.shields.io/badge/Dio-F8A000?style=flat-square) ![dotenv](https://img.shields.io/badge/dotenv-512BD4?style=flat-square) |
+| Library | ![RiverPod](https://img.shields.io/badge/RiverPod-6DB33F?style=flat-square) ![Go_router](https://img.shields.io/badge/Go_router-007396?style=flat-square) ![Dio](https://img.shields.io/badge/Dio-F8A000?style=flat-square) ![googlegemini](https://img.shields.io/badge/dotenv-512BD4?style=flat-square) ![Gemini](https://img.shields.io/badge/Gemini-8E75B2?style=flat-square&logo=googlegemini&logoColor=white) ![themoviedatabase](https://img.shields.io/badge/TMDB-01B4E4?style=flat-square&logo=themoviedatabase&logoColor=white) |
 | Version Control | ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=Git&logoColor=white) ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white) |
