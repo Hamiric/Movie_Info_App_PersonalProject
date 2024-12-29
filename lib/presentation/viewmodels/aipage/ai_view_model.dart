@@ -36,7 +36,8 @@ class AiState {
           progresslog ?? this.progresslog,
           progressIndex ?? this.progressIndex,
           response ?? this.response,
-          searchMovies ?? this.searchMovies, index ?? this.index);
+          searchMovies ?? this.searchMovies,
+          index ?? this.index);
 }
 
 class AiViewModel extends AutoDisposeNotifier<AiState> {
@@ -45,7 +46,9 @@ class AiViewModel extends AutoDisposeNotifier<AiState> {
     List<String> progresslog = [
       'AI 추천을 기다리는중...',
       '추천영화들의 데이터를 가져오는중...',
-      '완료'
+      '완료',
+      'AI 응답 문제, 다른 태그로 다시 시도해 보세요.',
+      '영화검색 문제, 다른 태그로 다시 시도해 보세요.',
     ];
     return AiState(0, null, progresslog, 0, null, null, 0);
   }
@@ -68,53 +71,77 @@ class AiViewModel extends AutoDisposeNotifier<AiState> {
     state = state.copyWith(progress: progress, progressIndex: progressIndex);
   }
 
+  /// 응답문제 발생시 실행될 코드
+  /// problem 1 은 AI 응답문제
+  /// problem 2 는 api 검색시 문제
+  void problemProgress(int problem) {
+    switch (problem) {
+      case 1:
+        state = state.copyWith(progress: 1.0, progressIndex: 3);
+        break;
+      case 2:
+        state = state.copyWith(progress: 1.0, progressIndex: 4);
+        break;
+    }
+  }
+
   /// Ai 응답 받기
   Future<void> aiResponse() async {
-    final env = Env();
-    await env.loadEnv();
-    final aiResponseUsecase = AiResponseUsecase(env);
+    try {
+      final env = Env();
+      await env.loadEnv();
+      final aiResponseUsecase = AiResponseUsecase(env);
 
-    String content = '';
-    for (int i = 0; i < state.customTag!.length; i++) {
-      if (i == 0) {
-        content += '#${state.customTag![i]}';
-      } else {
-        content += ' #${state.customTag![i]}';
+      String content = '';
+      for (int i = 0; i < state.customTag!.length; i++) {
+        if (i == 0) {
+          content += '#${state.customTag![i]}';
+        } else {
+          content += ' #${state.customTag![i]}';
+        }
       }
+      state.response = await aiResponseUsecase.getAiResponse(content);
+      for (int i = 0; i < state.response!.recommendMovies.length; i++) {
+        print(state.response!.recommendMovies[i].title);
+      }
+      addProgress();
+    } catch (e) {
+      print('AI 응답 문제 $e');
+      problemProgress(1);
     }
-    state.response = await aiResponseUsecase.getAiResponse(content);
-    for(int i = 0 ; i < state.response!.recommendMovies.length ; i ++){
-       print(state.response!.recommendMovies[i].title);
-    }
-    addProgress();
   }
 
   /// 제목으로 영화 검색
   Future<void> searchMovie() async {
-    List<String> query = [];
-    for (int i = 0; i < state.response!.recommendMovies.length; i++) {
-      query.add(state.response!.recommendMovies[i].title);
+    try {
+      List<String> query = [];
+      for (int i = 0; i < state.response!.recommendMovies.length; i++) {
+        query.add(state.response!.recommendMovies[i].title);
+      }
+
+      final env = Env();
+      await env.loadEnv();
+
+      final options = BaseOptions(headers: {
+        'Authorization': 'Bearer ${env.getKey('TMDB_ACCESS_TOKEN')}',
+        'Accept': 'application/json',
+      });
+
+      final dio = Dio(options);
+
+      final movieUsecase = MovieUsecase(dio);
+      state.searchMovies = await movieUsecase.fetchMovieSearch(query);
+
+      addProgress();
+    } catch (e) {
+      print('영화 검색시 문제 $e');
+      problemProgress(2);
     }
-
-    final env = Env();
-    await env.loadEnv();
-
-    final options = BaseOptions(headers: {
-      'Authorization': 'Bearer ${env.getKey('TMDB_ACCESS_TOKEN')}',
-      'Accept': 'application/json',
-    });
-
-    final dio = Dio(options);
-
-    final movieUsecase = MovieUsecase(dio);
-    state.searchMovies = await movieUsecase.fetchMovieSearch(query);
-
-    addProgress();
   }
 
   /// 페이지 앞으로 넘김
-  void nextPage(){
-    if(state.index == (state.searchMovies!.length - 1)){
+  void nextPage() {
+    if (state.index == (state.searchMovies!.length - 1)) {
       return;
     }
     int index = state.index + 1;
@@ -122,8 +149,8 @@ class AiViewModel extends AutoDisposeNotifier<AiState> {
   }
 
   /// 페이지 전으로 넘김
-  void beforePage(){
-    if(state.index == 0){
+  void beforePage() {
+    if (state.index == 0) {
       return;
     }
     int index = state.index - 1;
