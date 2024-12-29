@@ -8,6 +8,7 @@ import 'package:movie_info_app_personalproject/domain/repositories/ai_response_r
 class AiResponseRepositoryImpl implements AiResponseRepository {
 
   /// AI 응답 가져오기
+  @override
   Future<AiResponseEntitiy?> getAiResponse(String content, Env env) async {
     final aiResponseSource = AiResponseSourceImpl();
 

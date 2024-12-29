@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:movie_info_app_personalproject/data/models/ai_response_dto.dart';
 import 'package:movie_info_app_personalproject/data/sources/ai_response_source.dart';
@@ -9,7 +11,7 @@ void main() {
     await env.loadEnv();
     AiResponseSource aiResponseSource = AiResponseSourceImpl();
 
-    final prompt = """
+    const prompt = """
 다음 태그에 해당되는 영화 5개를 추천해줘.
 #코미디 #시간여행
 
@@ -33,6 +35,6 @@ void main() {
     AiResponseDto? aiResponseDto =
         await aiResponseSource.getAiResponse(prompt, env);
 
-    print(aiResponseDto!.responseText);
+    log(aiResponseDto!.responseText!);
   });
 }
