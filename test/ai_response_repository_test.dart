@@ -10,11 +10,11 @@ void main() {
     await env.loadEnv();
     AiResponseRepository aiResponseRepository = AiResponseRepositoryImpl();
 
-    final prompt = '#공포 #스릴러';
+    const prompt = '#공포 #스릴러';
 
     AiResponseEntitiy? a = await aiResponseRepository.getAiResponse(prompt, env);
 
     print(a!.recommendMovies[0].title);
-    print(a!.recommendMovies[1].title);
+    // print(a!.recommendMovies[1].title);
   });
 }

@@ -31,8 +31,8 @@ class AlertViewModel extends AutoDisposeNotifier<AlertState> {
     ];
 
     List<String> imgUrl = [
-      '',
-      '',
+      'assets/images/tuto_1.png',
+      'assets/images/tuto_2.png',
     ];
 
     return AlertState(0, explanation.length, explanation, imgUrl);

@@ -53,7 +53,7 @@ void main() {
 
     MoviePopularSearchTopDto? searchMovies =
         await movieDataSourceimpl.fetchMovieSearch('The Babadook');
-    expect(topRatedMovies!.page, 1);
+    expect(searchMovies!.page, 1);
 
     print(6);
   });
