@@ -13,21 +13,24 @@ final router = GoRouter(
       routes: [
         GoRoute(
           path: 'post',
-          pageBuilder: (context, state) => slideTransition(Detailpage(
+          pageBuilder: (context, state) => MaterialPage(
+              child: Detailpage(
             extra: state.extra,
           )),
         ),
         GoRoute(
           path: 'recommend',
-          builder: (context, state) => const Recommendpage(),
+          pageBuilder: (context, state) => MaterialPage(child: Recommendpage()),
         ),
         GoRoute(
             path: 'ai',
-            builder: (context, state) => Aipage(extra: state.extra),
+            pageBuilder: (context, state) =>
+                MaterialPage(child: Aipage(extra: state.extra)),
             routes: [
               GoRoute(
                 path: 'post',
-                pageBuilder: (context, state) => slideTransition(Detailpage(
+                pageBuilder: (context, state) => MaterialPage(
+                    child: Detailpage(
                   extra: state.extra,
                 )),
               ),
@@ -44,6 +47,7 @@ final router = GoRouter(
   */
 );
 
+/*
 /// 페이지 슬라이드 효과
 CustomTransitionPage slideTransition(Widget page) {
   return CustomTransitionPage(
@@ -60,3 +64,4 @@ CustomTransitionPage slideTransition(Widget page) {
     ),
   );
 }
+*/
