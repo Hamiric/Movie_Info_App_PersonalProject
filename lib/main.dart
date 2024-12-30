@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:movie_info_app_personalproject/presentation/app/route.dart';
+import 'package:movie_info_app_personalproject/presentation/theme/theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -9,13 +12,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      // home: 
+      themeMode: ThemeMode.dark,
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      
+      routerConfig: router,
     );
   }
 }
