@@ -52,6 +52,26 @@
 </div>
 </details>
 
+<details>
+<summary>🚀[ Go_router의 경로 사용법 ]</summary>
+<div markdown="1">
+
+### [ TIL - Go_router 경로에 대하여 ](https://hamiric.tistory.com/100)
+
+ <br>
+</div>
+</details>
+
+<details>
+<summary>💬[ Gemini AI 사용하기 및 프롬프트 작성 Tip ]</summary>
+<div markdown="1">
+
+### [ TIL - Gemini AI 연동하기 및 프롬프트 작성법  ](https://hamiric.tistory.com/101)
+
+ <br>
+</div>
+</details>
+
 ## 📝Technologies & Tools (FE)
 
 | 기술스택 | 배지 |

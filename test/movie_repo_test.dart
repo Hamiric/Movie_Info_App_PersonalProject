@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:movie_info_app_personalproject/data/repositories/movie_repository_impl.dart';
@@ -42,6 +44,6 @@ void main(){
     expect(movieDetail!.id, 845781);
 
     List<Movie>? searchMovies = await movieRepositoryImpl.fetchMovieSearch(['The Exorcist','The Shining']);
-    print(searchMovies![0].id);
+    log('${searchMovies![0].id}');
   });
 }

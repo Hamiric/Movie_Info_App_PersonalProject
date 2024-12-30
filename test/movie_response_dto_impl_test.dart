@@ -25,36 +25,24 @@ void main() {
         await movieDataSourceimpl.fetchNowPlayingMovies();
     expect(nowPlayingMovies!.page, 1);
 
-    print(1);
-
     MovieDetailDto? movieDetail =
         await movieDataSourceimpl.fetchMovieDetail(845781);
     expect(movieDetail!.id, 845781);
-
-    print(2);
     
     MoviePopularSearchTopDto? popularMovies =
         await movieDataSourceimpl.fetchPopularMovies();
     expect(popularMovies!.page, 1);
 
-    print(3);
-
     MoviePopularSearchTopDto? topRatedMovies =
         await movieDataSourceimpl.fetchTopRatedMovies();
     expect(topRatedMovies!.page, 1);
-
-    print(4);
 
     MovieNowUpcommingDto? upcomingMovies =
         await movieDataSourceimpl.fetchUpcomingMovies();
     expect(upcomingMovies!.page, 1);
 
-    print(5);
-
     MoviePopularSearchTopDto? searchMovies =
         await movieDataSourceimpl.fetchMovieSearch('The Babadook');
     expect(searchMovies!.page, 1);
-
-    print(6);
   });
 }

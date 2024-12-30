@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_info_app_personalproject/data/sources/env.dart';
@@ -56,6 +58,11 @@ class AiViewModel extends AutoDisposeNotifier<AiState> {
   /// 추천페이지에서 Tag 리스트 받기
   void setData(List<String> data) {
     final customTag = List<String>.from(data);
+
+    for(int i = 0 ; i < customTag.length ; i ++){
+      log(customTag[i], name: 'tag');
+    }
+
     state = state.copyWith(customTag: customTag);
   }
 
@@ -102,11 +109,11 @@ class AiViewModel extends AutoDisposeNotifier<AiState> {
       }
       state.response = await aiResponseUsecase.getAiResponse(content);
       for (int i = 0; i < state.response!.recommendMovies.length; i++) {
-        print(state.response!.recommendMovies[i].title);
+        log(state.response!.recommendMovies[i].title);
       }
       addProgress();
     } catch (e) {
-      print('AI 응답 문제 $e');
+      log('AI 응답 문제 $e');
       problemProgress(1);
     }
   }
@@ -134,7 +141,7 @@ class AiViewModel extends AutoDisposeNotifier<AiState> {
 
       addProgress();
     } catch (e) {
-      print('영화 검색시 문제 $e');
+      log('영화 검색시 문제 $e');
       problemProgress(2);
     }
   }
