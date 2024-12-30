@@ -49,6 +49,7 @@ class RecommendConfirmAlert extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       final data = List<String>.from(recommendState.customTag);
+                      Navigator.pop(context);
                       context.go('/ai', extra: data);
                     },
                     child: Center(
