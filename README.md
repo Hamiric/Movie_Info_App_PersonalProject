@@ -72,6 +72,16 @@
 </div>
 </details>
 
+<details>
+<summary>🐛 [ Go_router의 트렌지션 효과의 문제점과 해결 ]</summary>
+<div markdown="1">
+
+### [ TIL - Go_router Transition 효과의 문제점!  ](https://hamiric.tistory.com/102)
+
+ <br>
+</div>
+</details>
+
 ## 📝Technologies & Tools (FE)
 
 | 기술스택 | 배지 |
