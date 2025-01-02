@@ -40,6 +40,27 @@
 <br>태그를 입력하여, AI에게 태그에 맞는 영화를 5개정도 추천해주도록 한다. 태그 입력은, 추천 태그중 하나를 눌러서 넣어도 되고, + 버튼을 눌러 직접 작성해도 된다.<br><br>
 >* AI가 추천해주는 영화를 검색하는 기능 : <br>AI가 영화를 추천해 주면, 자동으로 해당 영화의 제목을 TMDB에 검색하여, 해당 영화의 정보를 받아온다.<br><br>
 
+## 실행하기 위해 필요한 작업
+1. 의존성 설치
+
+`flutter pub get`
+
+2. .env 파일 생성
+
+```
+TEST_KEY='1234'
+
+
+GEMINI_API_KEY=[GEMINI API KEY]
+
+TMDB_API_KEY=[TMDB API KEY]
+TMDB_ACCESS_TOKEN=[TMDB ACCESS TOKEN]
+```
+
+3. 애플리케이션 실행
+   
+`flutter run`
+
 ## 🚨 Trouble Shooting
 
 <details>
